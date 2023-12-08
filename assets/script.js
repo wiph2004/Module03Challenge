@@ -7,6 +7,11 @@ var Specials = ["!","@","#","$","%","|","*","*","(",")"];
 function generatePassword(){
 
   var userChoiceLength = prompt("How long is your passowrd? (Choose between 8 and 128)");
+
+  if(!userChoiceLength || userChoiceLength < 8 || userChoiceLength > 128){
+    alert("Please choose within bounds.");
+    return;
+  }
   var userChoicelower = confirm("Would you like lower case letters?");
   var userChoiceUpper = confirm("Would you like upper case letters?");
   var userChoiceNum = confirm("Would you like numbers?");
@@ -15,24 +20,33 @@ function generatePassword(){
   var passwordInitial = [];
   var mainPasswordList = [];
 
+    var numbers = false;
+    var lower = false;
+    var upper = false;
+    var special = false;
+
   if (userChoicelower) {
     mainPasswordList = mainPasswordList.concat(lowercase);
+    lower = true;
   }
 
   if (userChoiceUpper) {
     mainPasswordList = mainPasswordList.concat(upperCase);
+    upper = true;
   }
 
   if (userChoiceNum) {
     mainPasswordList = mainPasswordList.concat(Nums);
+    numbers = true;
   }
 
   if (userChoiceSpecial) {
     mainPasswordList = mainPasswordList.concat(Specials);
+    special = true;
   }
 
   if (mainPasswordList.length === 0) {
-    alert("CHOOSE SOMETHING!");
+    alert("Please choose at least one.");
     return;
   } 
 
@@ -52,28 +66,31 @@ function generatePassword(){
   var isAccurate = false;
   while(!isAccurate) {
     passwordInitial = getPassword();
-
+    if (lower){
     if (userChoicelower && includesLower(passwordInitial)) {
       isAccurate = true;
     } else {
       isAccurate = false;
       continue;
     }
-
+  }
+  if (upper){
     if (userChoiceUpper && includesUpper(passwordInitial)) {
       isAccurate = true;
     } else {
       isAccurate = false;
       continue;
     }
-
+  }
+  if(numbers){
     if (userChoiceNum && includesNumbers(passwordInitial)) {
       isAccurate = true;
     } else {
       isAccurate = false;
       continue;
     }
-
+  }
+  if(special){
     if (userChoiceSpecial && includesSpecials(passwordInitial)) {
       isAccurate = true;
     } else {
@@ -81,7 +98,7 @@ function generatePassword(){
       continue;
     }
   }
-
+  }
   return passwordInitial.join('');
 }
 
@@ -118,28 +135,7 @@ function includesSpecials(password) {
   return false;
 }
 
-// if (userChoicelower && userChoiceUpper && userChoiceNum && userChoiceSpecial){
-//   for(x = 0; x < userChoiceLength; x++){
-//     var mainPasswordList = lowercase.concat(upperCase, Nums, Specials);
-//     var computerRandomIndex = Math.floor(Math.random() * (mainPasswordList.length - 1));
-//     console.log(computerRandomIndex)
-//     passwordInitial.push(mainPasswordList[computerRandomIndex]);
-      
-//     for(y=0; y < lowercase.length; y++){
-//       passwordInitial.includes(lowercase[y])
-//     }
-//     for(y=0; y < upperCase.length; y++){
-//       passwordInitial.includes(upperCase[y])
-//     }
-//     for(y=0; y < Nums.length; y++){
-//       passwordInitial.includes(Nums[y])
-//     }
-//     for(y=0; y < Specials.length; y++){
-//       passwordInitial.includes(Specials[y])
-//     }
-//   }
 
-// }
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
