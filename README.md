@@ -41,7 +41,8 @@ THEN the password is either displayed in an alert or written to the page
 
 (https://github.com/wiph2004/Module03Challenge)
 
-![image](https://github.com/wiph2004/Module02Challenge/assets/149805523/15d8f4ea-ccf7-4d30-b99b-c03f3d7cfeb5)
+![image](https://github.com/wiph2004/Module03Challenge/assets/149805523/04f7f640-9cbe-4f2a-81e4-d79fa8419044)
+
 
 
 
